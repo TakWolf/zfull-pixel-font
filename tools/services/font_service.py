@@ -75,6 +75,8 @@ def dump_fonts(font_formats: list[FontFormat]) -> dict[LanguageFlavor, list[int]
                         'bitmap': bitmap,
                     }
 
+            bitmap_y_offset = configs.bitmap_y_offsets.get(builder.font_metric.font_size, 0)
+
             builder.glyphs.append(Glyph(
                 name='.notdef',
                 advance_width=builder.font_metric.font_size,
@@ -124,9 +126,9 @@ def dump_fonts(font_formats: list[FontFormat]) -> dict[LanguageFlavor, list[int]
 
                 builder.glyphs.append(Glyph(
                     name=glyph_name,
-                    horizontal_offset=(hori_bearing_x, hori_bearing_y - metrics.height),
+                    horizontal_offset=(hori_bearing_x, hori_bearing_y - metrics.height + bitmap_y_offset),
                     advance_width=hori_advance,
-                    vertical_offset=(vert_bearing_x, vert_bearing_y),
+                    vertical_offset=(vert_bearing_x, vert_bearing_y - bitmap_y_offset),
                     advance_height=vert_advance,
                     bitmap=bitmap,
                 ))
