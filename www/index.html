@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Zfull Pixel Font</title>
+    <link rel="stylesheet" href="fonts/index.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+<div id="app" class="page">
+    <header class="header">
+        <h1 class="title">Zfull Pixel Font</h1>
+    </header>
+    <main class="main">
+        <label>
+            <select class="select" v-model="languageFlavor">
+                <option v-for="languageFlavor in languageFlavors" :value="languageFlavor">{{ languageFlavor.toUpperCase() }}</option>
+            </select>
+        </label>
+        <label>
+            <select class="select" v-model="fontSize">
+                <option v-for="fontSize in db[languageFlavor]" :value="fontSize">{{ fontSize }}px</option>
+            </select>
+        </label>
+        <label>
+            <textarea class="input-box" v-model="input" :style="fontStyle"></textarea>
+        </label>
+    </main>
+</div>
+
+<script src="js/app.js" type="module"></script>
+
+</body>
+</html>
