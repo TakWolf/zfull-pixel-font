@@ -26,7 +26,7 @@
 - [FontTools](https://github.com/fonttools/fonttools)
 - [Loguru](https://github.com/Delgan/loguru)
 - [Cyclopts](https://github.com/BrianPugh/cyclopts)
-- [Vue.js](https://cn.vuejs.org)
+- [Vue](https://vuejs.org)
 
 ## 许可证
 
