@@ -1,5 +1,5 @@
 
-version = '2025.10.20'
+version = '2026.01.06'
 
 bitmap_y_offsets = {
     13: -1,
