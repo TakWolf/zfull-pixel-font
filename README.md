@@ -35,4 +35,4 @@
 
 ### 构建程序
 
-使用 [「MIT 许可证」](LICENSE-MIT) 授权。
+采用 [MIT License](LICENSE-MIT) 授权。
