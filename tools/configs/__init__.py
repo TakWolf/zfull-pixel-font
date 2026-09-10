@@ -1,7 +1,7 @@
 
-version = '2026.08.11'
+VERSION = '2026.08.11'
 
-bitmap_y_offsets = {
+BITMAP_Y_OFFSETS = {
     13: -1,
     14: -1,
     15: -1,

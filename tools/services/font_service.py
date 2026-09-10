@@ -15,11 +15,11 @@ from tools.configs.options import LanguageFlavor, FontFormat
 
 
 def dump_fonts(font_formats: list[FontFormat]) -> dict[LanguageFlavor, list[int]]:
-    path_define.outputs_dir.mkdir(parents=True, exist_ok=True)
+    path_define.OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
 
     dump_logs = {}
-    for language_flavor in options.language_flavors:
-        tt_font = TTFont(path_define.fonts_dir.joinpath(f'Zfull-{language_flavor.upper()}.ttf'))
+    for language_flavor in options.LANGUAGE_FLAVORS:
+        tt_font = TTFont(path_define.FONTS_DIR.joinpath(f'Zfull-{language_flavor.upper()}.ttf'))
         tb_name: table__n_a_m_e = tt_font['name']
         tb_eblc: table_E_B_L_C_ = tt_font['EBLC']
         tb_ebdt: table_E_B_D_T_ = tt_font['EBDT']
@@ -38,8 +38,8 @@ def dump_fonts(font_formats: list[FontFormat]) -> dict[LanguageFlavor, list[int]
             builder.font_metric.vertical_layout.ascent = strike.bitmapSizeTable.vert.ascender
             builder.font_metric.vertical_layout.descent = strike.bitmapSizeTable.vert.descender
 
-            builder.meta_info.version = f'{tb_name.getDebugName(5)} - Dump {configs.version}'
-            builder.meta_info.created_time = datetime.fromisoformat(f'{configs.version.replace('.', '-')}T00:00:00Z')
+            builder.meta_info.version = f'{tb_name.getDebugName(5)} - Dump {configs.VERSION}'
+            builder.meta_info.created_time = datetime.fromisoformat(f'{configs.VERSION.replace('.', '-')}T00:00:00Z')
             builder.meta_info.modified_time = builder.meta_info.created_time
             builder.meta_info.family_name = f'{tb_name.getDebugName(1)} {builder.font_metric.font_size}px'
             builder.meta_info.weight_name = WeightName.REGULAR
@@ -74,7 +74,7 @@ def dump_fonts(font_formats: list[FontFormat]) -> dict[LanguageFlavor, list[int]
                         'bitmap': bitmap,
                     }
 
-            bitmap_y_offset = configs.bitmap_y_offsets.get(builder.font_metric.font_size, 0)
+            bitmap_y_offset = configs.BITMAP_Y_OFFSETS.get(builder.font_metric.font_size, 0)
 
             glyph_names = set()
             for code_point, glyph_name in sorted(itertools.chain([(-1, '.notdef')], tt_font.getBestCmap().items())):
@@ -138,7 +138,7 @@ def dump_fonts(font_formats: list[FontFormat]) -> dict[LanguageFlavor, list[int]
                 ))
 
             for font_format in font_formats:
-                file_path = path_define.outputs_dir.joinpath(f'Zfull-{language_flavor.upper()}-{builder.font_metric.font_size}px.{font_format}')
+                file_path = path_define.OUTPUTS_DIR.joinpath(f'Zfull-{language_flavor.upper()}-{builder.font_metric.font_size}px.{font_format}')
                 getattr(builder, f'save_{font_format.replace('.', '_')}')(file_path)
                 logger.info("Make font: '{}'", file_path)
 

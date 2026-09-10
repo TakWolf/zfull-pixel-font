@@ -4,7 +4,7 @@ type LanguageFlavor = Literal[
     'gb',
     'big5',
 ]
-language_flavors = list[LanguageFlavor](get_args(LanguageFlavor.__value__))
+LANGUAGE_FLAVORS = list[LanguageFlavor](get_args(LanguageFlavor.__value__))
 
 type FontFormat = Literal[
     'otf',
@@ -19,4 +19,4 @@ type FontFormat = Literal[
     'bdf',
     'pcf',
 ]
-font_formats = list[FontFormat](get_args(FontFormat.__value__))
+FONT_FORMATS = list[FontFormat](get_args(FontFormat.__value__))
